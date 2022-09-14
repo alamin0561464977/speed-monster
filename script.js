@@ -10,7 +10,6 @@ let userText = "";
 let errorCount = 0;
 let startTime;
 let questionText = "";
-
 // Load and display question
 fetch("./texts.json")
   .then((res) => res.json())
@@ -41,6 +40,12 @@ const typeController = (e) => {
   userText += newLetter;
 
   const newLetterCorrect = validate(newLetter);
+  console.log(newLetterCorrect)
+  if (!newLetterCorrect) {
+    console.log('almin')
+    errorCount = errorCount + 1;
+    console.log(errorCount)
+  }
 
   if (newLetterCorrect) {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
@@ -50,7 +55,7 @@ const typeController = (e) => {
 
   // check if given question text is equal to user typed text
   if (questionText === userText) {
-    gameOver();
+    gameOver(newLetterCorrect);
   }
 };
 
@@ -60,15 +65,14 @@ const validate = (key) => {
   }
   return false;
 };
-
+console.log(errorCount)
 // FINISHED TYPING
-const gameOver = () => {
+const gameOver = (newLetterCorrect) => {
   document.removeEventListener("keydown", typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
   const timeTaken = (finishTime - startTime) / 1000;
-
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
@@ -80,11 +84,10 @@ const gameOver = () => {
   // show result
   resultModal.innerHTML += `
     <h1>Finished!</h1>
-    <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
+    <p>You took: <span class="bold">${Math.round(timeTaken)}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
     <button onclick="closeModal()">Close</button>
   `;
-
   addHistory(questionText, timeTaken, errorCount);
 
   // restart everything
