@@ -33,11 +33,11 @@ body {
 }
 
 #display {
-  height: 100px;
+  min-height: 80px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding-left: 5rem;
+  padding: 5px 3rem;
   color: white;
   font-size: 32px;
   background-color: #171717;
@@ -64,7 +64,6 @@ body {
   position: fixed;
   top: 10%;
   left: 10%;
-  /* margin: auto; */
   transform: translate(80%, 30%);
   height: 250px;
   width: 400px;

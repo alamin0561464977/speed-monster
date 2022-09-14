@@ -40,11 +40,8 @@ const typeController = (e) => {
   userText += newLetter;
 
   const newLetterCorrect = validate(newLetter);
-  console.log(newLetterCorrect)
   if (!newLetterCorrect) {
-    console.log('almin')
     errorCount = errorCount + 1;
-    console.log(errorCount)
   }
 
   if (newLetterCorrect) {
@@ -55,7 +52,7 @@ const typeController = (e) => {
 
   // check if given question text is equal to user typed text
   if (questionText === userText) {
-    gameOver(newLetterCorrect);
+    gameOver();
   }
 };
 
@@ -67,7 +64,7 @@ const validate = (key) => {
 };
 console.log(errorCount)
 // FINISHED TYPING
-const gameOver = (newLetterCorrect) => {
+const gameOver = () => {
   document.removeEventListener("keydown", typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
