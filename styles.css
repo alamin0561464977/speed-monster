@@ -207,8 +207,17 @@ button {
   }
 }
 
+/* blogs */
 .buttons h1 {
   color: wheat;
+}
+
+.blogs div {
+  background-color: darkslategrey;
+  color: wheat;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px;
 }
 
 @media only screen and (min-width: 990px) {
@@ -223,5 +232,13 @@ button {
   #result {
     top: 30%;
     left: 38%;
+  }
+
+  .blogs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 6%;
+    gap: 10px;
+
   }
 }
